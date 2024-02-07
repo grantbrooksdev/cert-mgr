@@ -54,7 +54,7 @@ test('Delete a customer', async () => {
 	const customer = new Customer(TEST_CUSTOMER.email);
 	await customer.delete();
 	const { success } = await customer.get();
-	expect(success).toBeTruthy();
+	expect(success).toBeFalsy();
 });
 
 afterAll(async () => {

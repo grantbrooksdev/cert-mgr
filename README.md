@@ -65,16 +65,6 @@ Your solution must support:
 
     curl -d '{"email": "grant@grantbrooks.dev"}' -H "Content-Type: application/json" -X DELETE "http://localhost:5077/api/customer/delete"
 
-# Get a Customer
-
-### Endpoint
-
-    /api/customer
-
-### Example
-
-    curl "http://localhost:5077/api/customer?email=grant@grantbrooks.dev"
-
 # Get all Certificates for Customer
 
 ### Endpoint

@@ -1,8 +1,17 @@
+# How to run:
+
+1. Clone the repository
+2. Ensure you're in the project root directory
+3. Run `npm install`
+4. Ensure that ports `5077` and `5432` are available on your computer. If they are not, please update the ports referenced in `.env`
+5. Run `docker-compose up`
+6. You should now be able to interact with the API via `http://localhost:5077`
+
 # Requirements
 
 A Customer:
 
--   [x] Has a name
+[x] Has a name
 -   [x] Has an email address
 -   [x] Has a password
 -   [x] May have zero to many Certificates

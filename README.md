@@ -11,7 +11,7 @@
 
 A Customer:
 
-[x] Has a name
+-   [x] Has a name
 -   [x] Has an email address
 -   [x] Has a password
 -   [x] May have zero to many Certificates

@@ -1,3 +1,5 @@
+# Requirements
+
 A Customer:
 
 -   [x] Has a name
@@ -22,6 +24,8 @@ Your solution must support:
 
 # Create a Customer
 
+### Endpoint
+
     /api/customer/create
 
 ### Date types
@@ -38,6 +42,8 @@ Your solution must support:
 
 # Delete a Customer
 
+### Endpoint
+
     /api/customer/delete
 
 ### Data Types
@@ -52,6 +58,8 @@ Your solution must support:
 
 # Get a Customer
 
+### Endpoint
+
     /api/customer
 
 ### Example
@@ -59,6 +67,8 @@ Your solution must support:
     curl "http://localhost:5077/api/customer?email=grant@grantbrooks.dev"
 
 # Get all Certificates for Customer
+
+### Endpoint
 
     /api/customer/certificates
 

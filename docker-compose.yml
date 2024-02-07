@@ -1,7 +1,18 @@
 version: '3.8'
 services:
+    db:
+        container_name: postgres
+        image: postgres
+        ports:
+            - '${DB_PORT}:5432'
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_DB=${DB_NAME}
+            - POSTGRES_USER=${DB_USER}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
     api:
-        container_name: testapi
+        container_name: cert-mgr
         restart: always
         build: .
         ports:
@@ -11,17 +22,10 @@ services:
         volumes:
             - .:/usr/src/app
             - '/app/node_modules'
-
-    db:
-        container_name: postgres
-        image: postgres
-        ports:
-            - '${DB_PORT}:5432'
-        volumes:
-            - data:/data/db
         environment:
-            - POSTGRES_PASSWORD=${DB_PASSWORD}
-            - POSTGRES_DB=${DB_NAME}
-
+            - DB_NAME=${DB_NAME}
+            - DB_HOST=${DB_HOST}
+            - DB_USER=${DB_USER}
+            - DB_PASSWORD=${DB_PASSWORD}
 volumes:
-    data: {}
+    postgres_data: {}

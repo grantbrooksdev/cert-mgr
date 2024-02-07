@@ -30,7 +30,7 @@ class Certificate {
 			});
 			this.id = newCert.id;
 			// destuctured for future error handling
-			return { success: true };
+			return { success: true, error: null };
 		} catch (err) {
 			return { success: false, error: err };
 		}
@@ -55,7 +55,7 @@ class Certificate {
 	}
 	generateBody() {
 		// random certificate body for this exercise
-		return `-----BEGIN CERTIFICATE----- ${randomBytes(64).toString('hex')} -----BEGIN CERTIFICATE-----`;
+		return `-----BEGIN CERTIFICATE----- ${randomBytes(64).toString('hex')} -----END CERTIFICATE-----`;
 	}
 }
 

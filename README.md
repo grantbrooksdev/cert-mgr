@@ -34,7 +34,7 @@ Your solution must support:
 
 ### Example
 
-    curl -d '{"email": "grant@grantbrooks.dev", "name": "Grant", "password": "supersecretpassword1234!"}' -H "Content-Type: application/json" -X POST "http://localhost:1234/api/customer/create"
+    curl -d '{"email": "grant@grantbrooks.dev", "name": "Grant", "password": "supersecretpassword5077!"}' -H "Content-Type: application/json" -X POST "http://localhost:5077/api/customer/create"
 
 # Delete a Customer
 
@@ -48,7 +48,7 @@ Your solution must support:
 
 ### Example
 
-    curl -d '{"email": "grant@grant.com"}' -H "Content-Type: application/json" -X DELETE "http://localhost:1234/api/customer/delete"
+    curl -d '{"email": "grant@grantbrooks.dev"}' -H "Content-Type: application/json" -X DELETE "http://localhost:5077/api/customer/delete"
 
 # Get a Customer
 
@@ -56,7 +56,7 @@ Your solution must support:
 
 ### Example
 
-    curl "http://localhost:1234/api/customer?email=grant@grantbrooks.dev"
+    curl "http://localhost:5077/api/customer?email=grant@grantbrooks.dev"
 
 # Get all Certificates for Customer
 
@@ -64,7 +64,7 @@ Your solution must support:
 
 ### Example
 
-    curl "http://localhost:1234/api/customer/certificates?email=grant@grantbrooks.dev"
+    curl "http://localhost:5077/api/customer/certificates?email=grant@grantbrooks.dev"
 
 # Create a Certificate
 
@@ -82,7 +82,7 @@ Your solution must support:
 
 ### Eaxmple
 
-    curl -d '{"email": "grant@grantbrooks.dev", "active": true, "pkey": "1234567qwertyuio"}' -H "Content-Type: application/json" -X POST "http://localhost:1234/api/certificate/create"
+    curl -d '{"email": "grant@grantbrooks.dev", "active": true, "pkey": "5077567qwertyuio"}' -H "Content-Type: application/json" -X POST "http://localhost:5077/api/certificate/create"
 
 # Activate / Deactivate a Certificate
 
@@ -99,4 +99,4 @@ Your solution must support:
 
 ### Example
 
-    curl -d '{"id": 5, "active": false}' -H "Content-Type: application/json" -X PUT "http://localhost:1234/api/certificate/update-active"
+    curl -d '{"id": 1, "active": false}' -H "Content-Type: application/json" -X PUT "http://localhost:5077/api/certificate/update-active"

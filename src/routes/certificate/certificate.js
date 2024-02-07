@@ -11,8 +11,11 @@ const createCertificate = async (request, response) => {
 	if (!pkey) {
 		return response.status(400).send('pkey not provided');
 	}
+    if (typeof active !== 'boolean') {
+		return response.status(400).send('active must be a boolean');
+    }
 	const cert = new Certificate(email, active, pkey);
-	const { success, error } = cert.create();
+	const { success, error } = await cert.create();
 	if (success) {
 		return response.send({ body: cert.certBody });
 	} else {
@@ -25,7 +28,7 @@ const toggleCertificateActive = async (request, response) => {
 	if (!id) {
 		return response.status(400).send('Id not provided');
 	}
-	if (typeof active != 'boolean') {
+	if (typeof active !== 'boolean') {
 		return response.status(400).send('active must be a boolean');
 	}
 	const { success, error } = await Certificate.toggleActive(id, active);

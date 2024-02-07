@@ -9,7 +9,15 @@ class Customer {
 	}
 	async create() {
 		try {
-            // take data from instantiation of the Customer and add it to the database
+			const existingCustomer = await CustomerModel.findOne({
+				where: {
+					email: this.email,
+				},
+			});
+			if (existingCustomer) {
+				throw 'customer email exists already';
+			}
+			// take data from instantiation of the Customer and add it to the database
 			const newCustomer = await CustomerModel.create({
 				email: this.email,
 				name: this.name,
@@ -17,9 +25,9 @@ class Customer {
 			});
 			this.id = newCustomer.id;
 			this.password = null;
-			return { success: true };
+			return { success: true, error: null };
 		} catch (err) {
-			return { success: false };
+			return { success: false, error: err };
 		}
 	}
 	async get() {
@@ -29,6 +37,7 @@ class Customer {
 			},
 		});
 		if (customer) {
+			// assign found information we want to the instance of the class
 			this.id = customer.id;
 			this.name = customer.name;
 			return { success: true };
@@ -38,14 +47,18 @@ class Customer {
 	}
 	async delete() {
 		try {
-			const numDeleted = await CustomerModel.destroy({
+			const numberDeleted = await CustomerModel.destroy({
 				where: {
 					email: this.email,
 				},
 			});
-			return numDeleted;
+			if (numberDeleted) {
+				return { success: true, error: null };
+			} else {
+				return { success: false, error: null };
+			}
 		} catch (err) {
-			return 0;
+			return { success: false, error: err };
 		}
 	}
 	async getActiveCerts() {

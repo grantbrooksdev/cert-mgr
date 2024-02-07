@@ -8,11 +8,11 @@ const createCustomer = async (request, response) => {
 		return response.status(403).send('Insufficient data');
 	}
 	const customer = new Customer(email, name, password);
-	const { success } = await customer.create();
+	const { success, error } = await customer.create();
 	if (success) {
-		return response.send(customer.email);
+		return response.send({created: customer.email});
 	} else {
-		return response.status(403).send('Duplicate customer conflict');
+		return response.status(403).send(error);
 	}
 };
 
@@ -28,13 +28,17 @@ const getCustomer = async (request, response) => {
 };
 
 const deleteCustomer = async (request, response) => {
-	const { email } = request?.body;
-	const customer = new Customer(email);
-	const deleted = await customer.delete();
-	if (deleted > 0) {
-		return response.send('deleted');
-	} else {
-		return response.status(404).send('customer not found');
+	try {
+		const { email } = request?.body;
+		const customer = new Customer(email);
+		const { success, error } = await customer.delete();
+		if (success) {
+			return response.send({deleted: email});
+		} else {
+			return response.status(404).send('Customer may not exist', error);
+		}
+	} catch {
+		return response.status(404).send('Customer not found');
 	}
 };
 

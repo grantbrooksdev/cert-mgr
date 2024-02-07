@@ -34,7 +34,7 @@ Your solution must support:
 
 # Create a Customer
 
-### Endpoint
+### Endpoint: POST
 
     /api/customer/create
 
@@ -52,7 +52,7 @@ Your solution must support:
 
 # Delete a Customer
 
-### Endpoint
+### Endpoint: DELETE
 
     /api/customer/delete
 
@@ -68,7 +68,7 @@ Your solution must support:
 
 # Get all Certificates for Customer
 
-### Endpoint
+### Endpoint: GET
 
     /api/customer/certificates
 
@@ -78,7 +78,7 @@ Your solution must support:
 
 # Create a Certificate
 
-### Endpoint
+### Endpoint: POST
 
     /api/certificate/create
 
@@ -96,7 +96,7 @@ Your solution must support:
 
 # Activate / Deactivate a Certificate
 
-### Endpoint
+### Endpoint: PUT
 
     /api/certificate/update-active
 

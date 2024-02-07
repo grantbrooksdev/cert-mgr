@@ -4,8 +4,9 @@
 2. Ensure you're in the project root directory
 3. Run `npm install`
 4. Ensure that ports `5077` and `5432` are available on your computer. If they are not, please update the ports referenced in `.env`
-5. Run `docker-compose up`
-6. You should now be able to interact with the API via `http://localhost:5077`
+5. Ensure that you have Docker Desktop and/or can use the `docker-compose` command
+6. Run `docker-compose up`
+7. You should now be able to interact with the API via `http://localhost:5077`
 
 # Requirements
 

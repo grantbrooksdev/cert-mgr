@@ -19,7 +19,10 @@ class Certificate {
 			const customer = new Customer(this.email);
 			// retrieve customer info from db
 			await customer.get();
-
+            if (!customer?.id) {
+                throw 'customer not found'
+            }
+            
 			// create entry in Certificate table
 			const newCert = await CertificateModel.create({
 				customerId: customer.id,
@@ -48,6 +51,16 @@ class Certificate {
 			await cert.update({ active: active });
 			// handle external notification via another function, make it cleaner / more swappable
 			await notifyExternal(id, active);
+			return { success: true };
+		} catch (err) {
+			return { success: false, error: err };
+		}
+	}
+    static async deleteAllFromCustomer(customerId) {
+		try {
+            await CertificateModel.destroy({
+				where: { customerId: customerId },
+			});
 			return { success: true };
 		} catch (err) {
 			return { success: false, error: err };

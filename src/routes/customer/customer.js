@@ -1,3 +1,4 @@
+const Certificate = require('../../classes/Certificate');
 const Customer = require('../../classes/Customer');
 
 const createCustomer = async (request, response) => {
@@ -10,7 +11,7 @@ const createCustomer = async (request, response) => {
 	const customer = new Customer(email, name, password);
 	const { success, error } = await customer.create();
 	if (success) {
-		return response.send({created: customer.email});
+		return response.send({ created: customer.email });
 	} else {
 		return response.status(403).send(error);
 	}
@@ -31,14 +32,19 @@ const deleteCustomer = async (request, response) => {
 	try {
 		const { email } = request?.body;
 		const customer = new Customer(email);
+		await customer.get();
+		const deleteCerts = await Certificate.deleteAllFromCustomer(customer.id);
+		if (!deleteCerts.success) {
+			return response.status(400).send('could not delete certs');
+		}
 		const { success, error } = await customer.delete();
 		if (success) {
-			return response.send({deleted: email});
+			return response.send({ deleted: email });
 		} else {
-			return response.status(404).send('Customer may not exist', error);
+			return response.status(404).send(`Customer may not exist ${error}`);
 		}
-	} catch {
-		return response.status(404).send('Customer not found');
+	} catch (err) {
+		return response.status(404).send(`Customer not found: ${err}`);
 	}
 };
 

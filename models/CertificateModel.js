@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
 			CertificateModel.belongsTo(models.CustomerModel, {
 				foreignKey: 'customerId',
 				as: 'customer',
+				onDelete: 'CASCADE',
+				onUpdate: 'CASCADE',
 			});
 		}
 	}

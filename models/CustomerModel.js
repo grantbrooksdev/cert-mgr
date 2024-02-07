@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
 			CustomerModel.hasMany(models.CertificateModel, {
 				foreignKey: 'customerId',
 				as: 'certificates',
+				onDelete: 'CASCADE',
+				onUpdate: 'CASCADE',
 			});
 		}
 		validatePassword(password) {
